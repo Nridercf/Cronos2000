@@ -1,15 +1,15 @@
 using System.Data;
 using System.Data.SqlClient;
-using RSZ_MAUI_Skeleton.Models;
+using DFRCronos2000.Models;
 
-namespace RSZ_MAUI_Skeleton.Factories;
+namespace DFRCronos2000.Factories;
 
 public interface IDataService
 {
-    List<Personne> GetPersonnes();
-    Personne GetPersonne(int id);
-    bool CreatePersonne(Personne personne);
-    bool UpdatePersonne(Personne personne);
+    List<Uilisateur> GetPersonnes();
+    Uilisateur GetPersonne(int id);
+    bool CreatePersonne(Uilisateur personne);
+    bool UpdatePersonne(Uilisateur personne);
     bool DeletePersonne(int id);
 }
 
@@ -28,10 +28,10 @@ public class DataService : IDataService
         _connexion = new SqlConnection(builder.ConnectionString);
     }
     
-    public List<Personne> GetPersonnes()
+    public List<Uilisateur> GetPersonnes()
     {
         String procedure = "GetPersonnes";
-        List<Personne> values;
+        List<Uilisateur> values;
 
         _connexion.Open();
         using (SqlCommand command = new SqlCommand(procedure, _connexion))
@@ -39,9 +39,9 @@ public class DataService : IDataService
             command.CommandType = CommandType.StoredProcedure;
             using (SqlDataReader reader = command.ExecuteReader())
             {
-                values = reader.Cast<IDataRecord>().Select(r => new Personne
+                values = reader.Cast<IDataRecord>().Select(r => new Uilisateur
                 {
-                    Id = r["Id"] as int?,
+                    IdUtil = r["Id"] as int?,
                     Nom = r["Nom"] as string,
                     Prenom = r["Prenom"] as string
                 }).ToList();
@@ -51,10 +51,10 @@ public class DataService : IDataService
         return values;
     }
 
-    public Personne GetPersonne(int id)
+    public Uilisateur GetPersonne(int id)
     {
         String procedure = "GetPersonne";
-        Personne value = null;
+        Uilisateur value = null;
 
         _connexion.Open();
         using (SqlCommand command = new SqlCommand(procedure, _connexion))
@@ -63,9 +63,9 @@ public class DataService : IDataService
             command.Parameters.AddWithValue("@Personne_Id", id);
             using (SqlDataReader reader = command.ExecuteReader())
             {
-                value = reader.Cast<IDataRecord>().Select(r => new Personne
+                value = reader.Cast<IDataRecord>().Select(r => new Uilisateur
                 {
-                    Id = r["Id"] as int?,
+                    IdUtil = r["Id"] as int?,
                     Nom = r["Nom"] as string,
                     Prenom = r["Prenom"] as string
                 }).FirstOrDefault();
@@ -75,7 +75,7 @@ public class DataService : IDataService
         return value;
     }
 
-    public bool CreatePersonne(Personne personne)
+    public bool CreatePersonne(Uilisateur personne)
     {
         String procedure = "CreatePersonne";
         bool value = false;
@@ -92,7 +92,7 @@ public class DataService : IDataService
         return value;
     }
 
-    public bool UpdatePersonne(Personne personne)
+    public bool UpdatePersonne(Uilisateur personne)
     {
         String procedure = "UpdatePersonne";
         bool value = false;
@@ -101,7 +101,7 @@ public class DataService : IDataService
         using (SqlCommand command = new SqlCommand(procedure, _connexion))
         {
             command.CommandType = CommandType.StoredProcedure;
-            command.Parameters.AddWithValue("@Id", personne.Id);
+            command.Parameters.AddWithValue("@Id", personne.IdUtil);
             command.Parameters.AddWithValue("@Nom", personne.Nom);
             command.Parameters.AddWithValue("@Prenom", personne.Prenom);
             value = command.ExecuteNonQuery() > 0;
