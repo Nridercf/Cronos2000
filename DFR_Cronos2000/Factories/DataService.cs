@@ -1,5 +1,5 @@
 using System.Data;
-using MySqlConnector;
+using System.Data.SqlClient;
 using RSZ_MAUI_Skeleton.Models;
 
 namespace RSZ_MAUI_Skeleton.Factories;
@@ -15,17 +15,17 @@ public interface IDataService
 
 public class DataService : IDataService
 {
-    private readonly MySqlConnection _connexion;
+    private readonly SqlConnection _connexion;
     public DataService()
     {
-        MySqlConnectionStringBuilder builder = new MySqlConnectionStringBuilder();
-
-        builder.Server = "127.0.0.1";
-        builder.UserID = "root";
-        builder.Password = "";
-        builder.Database = "RSZ_MAUI_SKELETON";
-
-        _connexion = new MySqlConnection(builder.ConnectionString);
+        SqlConnectionStringBuilder builder = new SqlConnectionStringBuilder()
+        {
+            DataSource = "localhost",
+            UserID = "sa",
+            Password = "Info76240#",
+            InitialCatalog = "Cronos2000_db"
+        };
+        _connexion = new SqlConnection(builder.ConnectionString);
     }
     
     public List<Personne> GetPersonnes()
@@ -34,10 +34,10 @@ public class DataService : IDataService
         List<Personne> values;
 
         _connexion.Open();
-        using (MySqlCommand command = new MySqlCommand(procedure, _connexion))
+        using (SqlCommand command = new SqlCommand(procedure, _connexion))
         {
             command.CommandType = CommandType.StoredProcedure;
-            using (MySqlDataReader reader = command.ExecuteReader())
+            using (SqlDataReader reader = command.ExecuteReader())
             {
                 values = reader.Cast<IDataRecord>().Select(r => new Personne
                 {
@@ -57,11 +57,11 @@ public class DataService : IDataService
         Personne value = null;
 
         _connexion.Open();
-        using (MySqlCommand command = new MySqlCommand(procedure, _connexion))
+        using (SqlCommand command = new SqlCommand(procedure, _connexion))
         {
             command.CommandType = CommandType.StoredProcedure;
             command.Parameters.AddWithValue("@Personne_Id", id);
-            using (MySqlDataReader reader = command.ExecuteReader())
+            using (SqlDataReader reader = command.ExecuteReader())
             {
                 value = reader.Cast<IDataRecord>().Select(r => new Personne
                 {
@@ -81,7 +81,7 @@ public class DataService : IDataService
         bool value = false;
 
         _connexion.Open();
-        using (MySqlCommand command = new MySqlCommand(procedure, _connexion))
+        using (SqlCommand command = new SqlCommand(procedure, _connexion))
         {
             command.CommandType = CommandType.StoredProcedure;
             command.Parameters.AddWithValue("@Nom", personne.Nom);
@@ -98,7 +98,7 @@ public class DataService : IDataService
         bool value = false;
 
         _connexion.Open();
-        using (MySqlCommand command = new MySqlCommand(procedure, _connexion))
+        using (SqlCommand command = new SqlCommand(procedure, _connexion))
         {
             command.CommandType = CommandType.StoredProcedure;
             command.Parameters.AddWithValue("@Id", personne.Id);
@@ -116,7 +116,7 @@ public class DataService : IDataService
         bool value = false;
 
         _connexion.Open();
-        using (MySqlCommand command = new MySqlCommand(procedure, _connexion))
+        using (SqlCommand command = new SqlCommand(procedure, _connexion))
         {
             command.CommandType = CommandType.StoredProcedure;
             command.Parameters.AddWithValue("@Id", id);
