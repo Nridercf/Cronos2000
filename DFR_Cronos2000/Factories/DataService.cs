@@ -1,8 +1,8 @@
 using System.Data;
 using System.Data.SqlClient;
-using RSZ_MAUI_Skeleton.Models;
+using DFRCronos2000.Models;
 
-namespace RSZ_MAUI_Skeleton.Factories;
+namespace DFRCronos2000.Factories;
 
 public interface IDataService
 {
