@@ -1,6 +1,6 @@
 namespace DFRCronos2000.Models;
 
-public class Personne
+public class Uilisateur
 {
     public int? IdUtil { get; set; }
     public string Nom { get; set; }
