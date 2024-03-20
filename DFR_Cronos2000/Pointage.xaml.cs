@@ -1,8 +1,8 @@
 namespace DFRCronos2000;
 
-public partial class NewPage1 : ContentPage
+public partial class Pointage : ContentPage
 {
-	public NewPage1()
+	public Pointage()
 	{
 		InitializeComponent();
 	}

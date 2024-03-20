@@ -1,13 +1,15 @@
 using System.Data;
 using System.Data.SqlClient;
-using DFR_Cronos2000.Models;
+using DFRCronos2000.Models;
 
-namespace DFR_Cronos2000.Factories;
+namespace DFRCronos2000.Factories;
 
 public interface IDataService
 {
     List<Personne> GetPersonnes();
     Personne GetPersonne(int id);
+
+    Personne GetPersonne(string matricule);
     bool CreatePersonne(Personne personne);
     bool UpdatePersonne(Personne personne);
     bool DeletePersonne(int id);
@@ -67,7 +69,35 @@ public class DataService : IDataService
                 {
                     Id = r["Id"] as int?,
                     Nom = r["Nom"] as string,
-                    Prenom = r["Prenom"] as string
+                    Prenom = r["Prenom"] as string,
+                    Matricule = r["Matricule"] as string,
+                    Mdp = r["MDP"] as string
+                }).FirstOrDefault();
+            }
+        }
+        _connexion.Close();
+        return value;
+    }
+
+    public Personne GetPersonne(string matricule)
+    {
+        String procedure = "GetPersonneMatricule";
+        Personne value = null;
+
+        _connexion.Open();
+        using (SqlCommand command = new SqlCommand(procedure, _connexion)) 
+        {
+            command.CommandType = CommandType.StoredProcedure;
+            command.Parameters.AddWithValue("@Matricule", matricule);
+            using (SqlDataReader reader = command.ExecuteReader()) // execute the stored procedure
+            {
+                value = reader.Cast<IDataRecord>().Select(r => new Personne // convert the result to a Personne object
+                {
+                    Id = r["IdUtil"] as int?,
+                    Nom = r["Nom"] as string,
+                    Prenom = r["Prenom"] as string,
+                    Matricule = r["Matricule"] as string,
+                    Mdp = r["MDP"] as string
                 }).FirstOrDefault();
             }
         }
