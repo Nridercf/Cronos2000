@@ -8,41 +8,41 @@ build_property.PlatformNeutralAssembly =
 build_property.EnforceExtendedAnalyzerRules = 
 build_property._SupportedPlatformList = Linux,macOS,Windows
 build_property.RootNamespace = DFRCronos2000
-build_property.ProjectDir = C:\Users\Yaroslav Follet\source\repos\Cronos2000\DFR_Cronos2000\
+build_property.ProjectDir = C:\Users\Yaroslav Follet\source\repos\DFRCronos2000\DFR_Cronos2000\
 build_property.EnableComHosting = 
 build_property.EnableGeneratedComInterfaceComImportInterop = 
 
-[C:/Users/Yaroslav Follet/source/repos/Cronos2000/DFR_Cronos2000/App.xaml]
+[C:/Users/Yaroslav Follet/source/repos/DFRCronos2000/DFR_Cronos2000/App.xaml]
 build_metadata.AdditionalFiles.GenKind = Xaml
 build_metadata.AdditionalFiles.ManifestResourceName = DFRCronos2000.App.xaml
 build_metadata.AdditionalFiles.TargetPath = App.xaml
 build_metadata.AdditionalFiles.RelativePath = App.xaml
 
-[C:/Users/Yaroslav Follet/source/repos/Cronos2000/DFR_Cronos2000/AppShell.xaml]
+[C:/Users/Yaroslav Follet/source/repos/DFRCronos2000/DFR_Cronos2000/AppShell.xaml]
 build_metadata.AdditionalFiles.GenKind = Xaml
 build_metadata.AdditionalFiles.ManifestResourceName = DFRCronos2000.AppShell.xaml
 build_metadata.AdditionalFiles.TargetPath = AppShell.xaml
 build_metadata.AdditionalFiles.RelativePath = AppShell.xaml
 
-[C:/Users/Yaroslav Follet/source/repos/Cronos2000/DFR_Cronos2000/MainPage.xaml]
+[C:/Users/Yaroslav Follet/source/repos/DFRCronos2000/DFR_Cronos2000/MainPage.xaml]
 build_metadata.AdditionalFiles.GenKind = Xaml
 build_metadata.AdditionalFiles.ManifestResourceName = DFRCronos2000.MainPage.xaml
 build_metadata.AdditionalFiles.TargetPath = MainPage.xaml
 build_metadata.AdditionalFiles.RelativePath = MainPage.xaml
 
-[C:/Users/Yaroslav Follet/source/repos/Cronos2000/DFR_Cronos2000/Pointage.xaml]
+[C:/Users/Yaroslav Follet/source/repos/DFRCronos2000/DFR_Cronos2000/Pointage.xaml]
 build_metadata.AdditionalFiles.GenKind = Xaml
 build_metadata.AdditionalFiles.ManifestResourceName = DFRCronos2000.Pointage.xaml
 build_metadata.AdditionalFiles.TargetPath = Pointage.xaml
 build_metadata.AdditionalFiles.RelativePath = Pointage.xaml
 
-[C:/Users/Yaroslav Follet/source/repos/Cronos2000/DFR_Cronos2000/Resources/Styles/Colors.xaml]
+[C:/Users/Yaroslav Follet/source/repos/DFRCronos2000/DFR_Cronos2000/Resources/Styles/Colors.xaml]
 build_metadata.AdditionalFiles.GenKind = Xaml
 build_metadata.AdditionalFiles.ManifestResourceName = DFRCronos2000.Resources.Styles.Colors.xaml
 build_metadata.AdditionalFiles.TargetPath = Resources\Styles\Colors.xaml
 build_metadata.AdditionalFiles.RelativePath = Resources\Styles\Colors.xaml
 
-[C:/Users/Yaroslav Follet/source/repos/Cronos2000/DFR_Cronos2000/Resources/Styles/Styles.xaml]
+[C:/Users/Yaroslav Follet/source/repos/DFRCronos2000/DFR_Cronos2000/Resources/Styles/Styles.xaml]
 build_metadata.AdditionalFiles.GenKind = Xaml
 build_metadata.AdditionalFiles.ManifestResourceName = DFRCronos2000.Resources.Styles.Styles.xaml
 build_metadata.AdditionalFiles.TargetPath = Resources\Styles\Styles.xaml

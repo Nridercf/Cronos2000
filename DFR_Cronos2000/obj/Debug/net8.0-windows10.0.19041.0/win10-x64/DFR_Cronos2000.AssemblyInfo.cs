@@ -18,7 +18,7 @@ using System.Reflection;
 [assembly: System.Reflection.AssemblyCompanyAttribute("DFR_Cronos2000")]
 [assembly: System.Reflection.AssemblyConfigurationAttribute("Debug")]
 [assembly: System.Reflection.AssemblyFileVersionAttribute("1.0.0.0")]
-[assembly: System.Reflection.AssemblyInformationalVersionAttribute("1.0")]
+[assembly: System.Reflection.AssemblyInformationalVersionAttribute("1.0+f9eaef737d592d4e38d9f9503fc1e498d7cc5147")]
 [assembly: System.Reflection.AssemblyProductAttribute("DFR_Cronos2000")]
 [assembly: System.Reflection.AssemblyTitleAttribute("DFR_Cronos2000")]
 [assembly: System.Reflection.AssemblyVersionAttribute("1.0.0.0")]
