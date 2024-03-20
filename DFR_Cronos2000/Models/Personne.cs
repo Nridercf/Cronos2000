@@ -1,4 +1,4 @@
-namespace RSZ_MAUI_Skeleton.Models;
+namespace DFR_Cronos2000.Models;
 
 public class Personne
 {

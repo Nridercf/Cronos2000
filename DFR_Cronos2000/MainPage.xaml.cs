@@ -1,24 +1,22 @@
-﻿namespace DFR_Cronos2000
+﻿using Factories.DataService;
+
+namespace DFR_Cronos2000
 {
     public partial class MainPage : ContentPage
     {
-        int count = 0;
+        
 
         public MainPage()
         {
             InitializeComponent();
+            var _dataService = IDataService;
         }
 
-        private void OnCounterClicked(object sender, EventArgs e)
+        private void Tentative_Connexion(object sender, EventArgs e)
         {
-            count++;
+            string matricule = Matricule.Text;
+            string mdp = MDP.Text;
 
-            if (count == 1)
-                CounterBtn.Text = $"Clicked {count} time";
-            else
-                CounterBtn.Text = $"Clicked {count} times";
-
-            SemanticScreenReader.Announce(CounterBtn.Text);
         }
     }
 
