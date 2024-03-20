@@ -1,7 +1,7 @@
 ﻿using Android.App;
 using Android.Runtime;
 
-namespace DFR_Cronos2000
+namespace DFRCronos2000
 {
     [Application]
     public class MainApplication : MauiApplication

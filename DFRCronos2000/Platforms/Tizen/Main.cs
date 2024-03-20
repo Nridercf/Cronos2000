@@ -2,7 +2,7 @@ using Microsoft.Maui;
 using Microsoft.Maui.Hosting;
 using System;
 
-namespace DFR_Cronos2000
+namespace DFRCronos2000
 {
     internal class Program : MauiApplication
     {

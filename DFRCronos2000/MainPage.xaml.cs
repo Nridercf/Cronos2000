@@ -1,4 +1,4 @@
-﻿namespace DFR_Cronos2000
+﻿namespace DFRCronos2000
 {
     public partial class MainPage : ContentPage
     {

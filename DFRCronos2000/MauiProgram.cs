@@ -1,6 +1,6 @@
 ﻿using Microsoft.Extensions.Logging;
 
-namespace DFR_Cronos2000
+namespace DFRCronos2000
 {
     public static class MauiProgram
     {

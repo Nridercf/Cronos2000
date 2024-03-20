@@ -1,7 +1,7 @@
 ﻿using ObjCRuntime;
 using UIKit;
 
-namespace DFR_Cronos2000
+namespace DFRCronos2000
 {
     public class Program
     {

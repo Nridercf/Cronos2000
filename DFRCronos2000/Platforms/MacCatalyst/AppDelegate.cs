@@ -1,6 +1,6 @@
 ﻿using Foundation;
 
-namespace DFR_Cronos2000
+namespace DFRCronos2000
 {
     [Register("AppDelegate")]
     public class AppDelegate : MauiUIApplicationDelegate
