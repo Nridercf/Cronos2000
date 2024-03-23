@@ -1,12 +1,12 @@
 namespace DFRCronos2000.Models;
 
-public class Uilisateur
+public class Utilisateur
 {
     public int? IdUtil { get; set; }
     public string Nom { get; set; }
     public string Prenom { get; set; }
-    public string Matricul { get; set; }
-    public string MDP { get; set; }
+    public string Matricule { get; set; }
+    public string Mdp { get; set; }
 
     public int IdRole { get; set; }
 }

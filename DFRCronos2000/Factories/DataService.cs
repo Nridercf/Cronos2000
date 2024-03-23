@@ -6,12 +6,12 @@ namespace DFRCronos2000.Factories;
 
 public interface IDataService
 {
-    List<Personne> GetPersonnes();
-    Personne GetPersonne(int id);
+    List<Utilisateur> GetPersonnes();
+    Utilisateur GetPersonne(int id);
 
-    Personne GetPersonne(string matricule);
-    bool CreatePersonne(Personne personne);
-    bool UpdatePersonne(Personne personne);
+    Utilisateur GetPersonne(string matricule);
+    bool CreatePersonne(Utilisateur personne);
+    bool UpdatePersonne(Utilisateur personne);
     bool DeletePersonne(int id);
 }
 
@@ -30,10 +30,12 @@ public class DataService : IDataService
         _connexion = new SqlConnection(builder.ConnectionString);
     }
     
-    public List<Uilisateur> GetPersonnes()
+
+    public List<Utilisateur> GetPersonnes()
     {
         String procedure = "GetPersonnes";
-        List<Uilisateur> values;
+        List<Utilisateur> values;
+
 
         _connexion.Open();
         using (SqlCommand command = new SqlCommand(procedure, _connexion))
@@ -41,7 +43,8 @@ public class DataService : IDataService
             command.CommandType = CommandType.StoredProcedure;
             using (SqlDataReader reader = command.ExecuteReader())
             {
-                values = reader.Cast<IDataRecord>().Select(r => new Uilisateur
+                values = reader.Cast<IDataRecord>().Select(r => new Utilisateur
+
                 {
                     IdUtil = r["Id"] as int?,
                     Nom = r["Nom"] as string,
@@ -53,11 +56,11 @@ public class DataService : IDataService
         return values;
     }
 
-    public Uilisateur GetPersonne(int id)
+
+    public Utilisateur GetPersonne(int id)
     {
         String procedure = "GetPersonne";
-        Uilisateur value = null;
-
+        Utilisateur value = null;
         _connexion.Open();
         using (SqlCommand command = new SqlCommand(procedure, _connexion))
         {
@@ -65,13 +68,43 @@ public class DataService : IDataService
             command.Parameters.AddWithValue("@Personne_Id", id);
             using (SqlDataReader reader = command.ExecuteReader())
             {
-                value = reader.Cast<IDataRecord>().Select(r => new Uilisateur
+
+                value = reader.Cast<IDataRecord>().Select(r => new Utilisateur
                 {
                     IdUtil = r["Id"] as int?,
                     Nom = r["Nom"] as string,
                     Prenom = r["Prenom"] as string,
                     Matricule = r["Matricule"] as string,
-                    Mdp = r["MDP"] as string
+                    Mdp = r["MDP"] as string,
+                    IdRole = r["IdRole"] as int?
+                }).FirstOrDefault();
+            }
+        }
+        _connexion.Close();
+        return value;
+    }
+
+    public Utilisateur GetPersonne(string matricule)
+    {
+        String procedure = "GetPersonneMatricule";
+        Utilisateur value = null;
+
+        _connexion.Open();
+        using (SqlCommand command = new SqlCommand(procedure, _connexion)) 
+        {
+            command.CommandType = CommandType.StoredProcedure;
+            command.Parameters.AddWithValue("@Matricule", matricule);
+            using (SqlDataReader reader = command.ExecuteReader()) // execute the stored procedure
+            {
+                value = reader.Cast<IDataRecord>().Select(r => new Utilisateur // convert the result to a Utilisateur object
+                {
+                    IdUtil = r["IdUtil"] as int?,
+                    Nom = r["Nom"] as string,
+                    Prenom = r["Prenom"] as string,
+                    Matricule = r["Matricule"] as string,
+                    Mdp = r["MDP"] as string,
+                    IdRole = r["IdRole"] as int?
+
                 }).FirstOrDefault();
             }
         }
@@ -105,33 +138,9 @@ public class DataService : IDataService
         return value;
     }
 
-    public Personne GetPersonne(string matricule)
-    {
-        String procedure = "GetPersonneMatricule";
-        Personne value = null;
 
-        _connexion.Open();
-        using (SqlCommand command = new SqlCommand(procedure, _connexion)) 
-        {
-            command.CommandType = CommandType.StoredProcedure;
-            command.Parameters.AddWithValue("@Matricule", matricule);
-            using (SqlDataReader reader = command.ExecuteReader()) // execute the stored procedure
-            {
-                value = reader.Cast<IDataRecord>().Select(r => new Personne // convert the result to a Personne object
-                {
-                    Id = r["IdUtil"] as int?,
-                    Nom = r["Nom"] as string,
-                    Prenom = r["Prenom"] as string,
-                    Matricule = r["Matricule"] as string,
-                    Mdp = r["MDP"] as string
-                }).FirstOrDefault();
-            }
-        }
-        _connexion.Close();
-        return value;
-    }
-
-    public bool CreatePersonne(Uilisateur personne)
+   
+    public bool CreatePersonne(Utilisateur personne)
     {
         String procedure = "CreatePersonne";
         bool value = false;
@@ -148,7 +157,9 @@ public class DataService : IDataService
         return value;
     }
 
-    public bool UpdatePersonne(Uilisateur personne)
+
+
+    public bool UpdatePersonne(Utilisateur personne)
     {
         String procedure = "UpdatePersonne";
         bool value = false;
