@@ -7,4 +7,6 @@ public class Personne
     public string Prenom { get; set; }
     public string Matricule { get; set; }
     public string Mdp { get; set; }
+
+    public int? IdRole { get; set; }
 }

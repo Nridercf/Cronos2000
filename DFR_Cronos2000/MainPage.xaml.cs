@@ -23,6 +23,11 @@ namespace DFR_Cronos2000
                 var dbNDP = Hashage.Hash(mdp);
                 if (personne.Mdp == dbNDP)
                 {
+                    if (personne.IdRole == 1)
+                    {
+                        Navigation.PushAsync(new Adminisatration());
+                    }
+                    else
                     Navigation.PushAsync(new Pointage());
                 }
                 else

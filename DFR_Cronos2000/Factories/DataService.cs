@@ -71,7 +71,8 @@ public class DataService : IDataService
                     Nom = r["Nom"] as string,
                     Prenom = r["Prenom"] as string,
                     Matricule = r["Matricule"] as string,
-                    Mdp = r["MDP"] as string
+                    Mdp = r["MDP"] as string,
+                    IdRole = r["IdRole"] as int?
                 }).FirstOrDefault();
             }
         }
@@ -97,7 +98,9 @@ public class DataService : IDataService
                     Nom = r["Nom"] as string,
                     Prenom = r["Prenom"] as string,
                     Matricule = r["Matricule"] as string,
-                    Mdp = r["MDP"] as string
+                    Mdp = r["MDP"] as string,
+                    IdRole = r["IdRole"] as int?
+
                 }).FirstOrDefault();
             }
         }
