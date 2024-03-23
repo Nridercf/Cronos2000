@@ -1,8 +1,8 @@
 ﻿################################################################################
 # Ce fichier .gitignore a été automatiquement créé par Microsoft(R) Visual Studio.
 ################################################################################
+/DFRCronos2000/bin
+/DFRCronos2000/obj
 /DFR_Cronos2000/bin
-/DFR_Cronos2000/obj/
-/DFRCronos2000
+/DFR_Cronos2000/obj
 /.vs
-/DFR_Cronos2000/obj/Debug/net8.0-maccatalyst/maccatalyst-x64/DFR_Cronos2000.nfloat.g.cs
