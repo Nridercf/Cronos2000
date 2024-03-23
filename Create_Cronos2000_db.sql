@@ -45,33 +45,55 @@ begin
 	select IdUtil,Matricule,Nom,Prenom from Utilisateur
 end
 go
+
 create proc GetPersonne @IdUtil int
 as  
 begin	
 	select IdUtil,Matricule,Nom,Prenom from Utilisateur where @IdUtil = IdUtil
 end
 go
-create proc CreatePersonne @Nom varchar(38),@Prenom varchar(38),@Matricule varchar(15),@IdRole int
-as
-begin
-	insert into Utilisateur (Nom,Prenom,Matricule,IdRole)
-	values(@Nom,@Prenom,@Matricule,@IdRole)
+
+create proc GetPersonneMatricule @Matricule varchar(15)
+as  
+begin	
+	select IdUtil,Matricule,Nom,Prenom,MDP from Utilisateur where @Matricule = Matricule
 end
 go
-create proc UpdatePersonne @Id int,@Nom varchar(38),@Prenom varchar(38),@Matricule varchar(15),@IdRole int
+
+create proc CreatePersonne @Nom varchar(38),@Prenom varchar(38),@Matricule varchar(15),@MDP varchar(50),@IdRole int
+as
+begin
+	insert into Utilisateur (Nom,Prenom,Matricule,MDP,IdRole)
+	values(@Nom,@Prenom,@Matricule,@MDP,@IdRole)
+end
+go
+
+create proc UpdatePersonne @Id int,@Nom varchar(38),@Prenom varchar(38),@Matricule varchar(15),@MDP varchar(50),@IdRole int
 as
 begin
 	update Utilisateur
 	set Nom = @Nom,
 	Prenom = @Prenom,
 	Matricule = @Matricule,
+	MDP = @MDP,
 	IdRole = @IdRole
 	where IdUtil = @Id
 end
 go
+
 create proc DeletePersonne @Id int
 as
 begin
 	delete Utilisateur where IdUtil = @Id
 end
 go
+
+insert into RoleUtil(Libelle)
+values('Administation')
+
+insert into RoleUtil(Libelle)
+values('employee')
+
+exec CreatePersonne @Nom = 'Follet', @Prenom = 'Yaroslav', @Matricule = 'Admin', @MDP = '??$?<??{j??\u007f]??\u0001?vlH\\?]?????s3]o', @IdRole = 1
+
+exec GetPersonneMatricule @Matricule = 'Admin'
