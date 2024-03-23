@@ -6,12 +6,12 @@ namespace DFRCronos2000.Factories;
 
 public interface IDataService
 {
-    List<Personne> GetPersonnes();
-    Personne GetPersonne(int id);
+    List<Utilisateur> GetPersonnes();
+    Utilisateur GetPersonne(int id);
 
-    Personne GetPersonne(string matricule);
-    bool CreatePersonne(Personne personne);
-    bool UpdatePersonne(Personne personne);
+    Utilisateur GetPersonne(string matricule);
+    bool CreatePersonne(Utilisateur personne);
+    bool UpdatePersonne(Utilisateur personne);
     bool DeletePersonne(int id);
 }
 
@@ -30,10 +30,17 @@ public class DataService : IDataService
         _connexion = new SqlConnection(builder.ConnectionString);
     }
     
+<<<<<<< Updated upstream:DFR_Cronos2000/Factories/DataService.cs
     public List<Personne> GetPersonnes()
     {
         String procedure = "GetPersonnes";
         List<Personne> values;
+=======
+    public List<Utilisateur> GetPersonnes()
+    {
+        String procedure = "GetPersonnes";
+        List<Utilisateur> values;
+>>>>>>> Stashed changes:DFRCronos2000/Factories/DataService.cs
 
         _connexion.Open();
         using (SqlCommand command = new SqlCommand(procedure, _connexion))
@@ -41,7 +48,11 @@ public class DataService : IDataService
             command.CommandType = CommandType.StoredProcedure;
             using (SqlDataReader reader = command.ExecuteReader())
             {
+<<<<<<< Updated upstream:DFR_Cronos2000/Factories/DataService.cs
                 values = reader.Cast<IDataRecord>().Select(r => new Personne
+=======
+                values = reader.Cast<IDataRecord>().Select(r => new Utilisateur
+>>>>>>> Stashed changes:DFRCronos2000/Factories/DataService.cs
                 {
                     Id = r["Id"] as int?,
                     Nom = r["Nom"] as string,
@@ -53,10 +64,17 @@ public class DataService : IDataService
         return values;
     }
 
+<<<<<<< Updated upstream:DFR_Cronos2000/Factories/DataService.cs
     public Personne GetPersonne(int id)
     {
         String procedure = "GetPersonne";
         Personne value = null;
+=======
+    public Utilisateur GetPersonne(int id)
+    {
+        String procedure = "GetPersonne";
+        Utilisateur value = null;
+>>>>>>> Stashed changes:DFRCronos2000/Factories/DataService.cs
 
         _connexion.Open();
         using (SqlCommand command = new SqlCommand(procedure, _connexion))
@@ -65,7 +83,11 @@ public class DataService : IDataService
             command.Parameters.AddWithValue("@Personne_Id", id);
             using (SqlDataReader reader = command.ExecuteReader())
             {
+<<<<<<< Updated upstream:DFR_Cronos2000/Factories/DataService.cs
                 value = reader.Cast<IDataRecord>().Select(r => new Personne
+=======
+                value = reader.Cast<IDataRecord>().Select(r => new Utilisateur
+>>>>>>> Stashed changes:DFRCronos2000/Factories/DataService.cs
                 {
                     Id = r["Id"] as int?,
                     Nom = r["Nom"] as string,
@@ -80,10 +102,10 @@ public class DataService : IDataService
         return value;
     }
 
-    public Personne GetPersonne(string matricule)
+    public Utilisateur GetPersonne(string matricule)
     {
         String procedure = "GetPersonneMatricule";
-        Personne value = null;
+        Utilisateur value = null;
 
         _connexion.Open();
         using (SqlCommand command = new SqlCommand(procedure, _connexion)) 
@@ -92,9 +114,9 @@ public class DataService : IDataService
             command.Parameters.AddWithValue("@Matricule", matricule);
             using (SqlDataReader reader = command.ExecuteReader()) // execute the stored procedure
             {
-                value = reader.Cast<IDataRecord>().Select(r => new Personne // convert the result to a Personne object
+                value = reader.Cast<IDataRecord>().Select(r => new Utilisateur // convert the result to a Utilisateur object
                 {
-                    Id = r["IdUtil"] as int?,
+                    IdUtil = r["IdUtil"] as int?,
                     Nom = r["Nom"] as string,
                     Prenom = r["Prenom"] as string,
                     Matricule = r["Matricule"] as string,
@@ -108,7 +130,12 @@ public class DataService : IDataService
         return value;
     }
 
+<<<<<<< Updated upstream:DFR_Cronos2000/Factories/DataService.cs
     public bool CreatePersonne(Personne personne)
+=======
+   
+    public bool CreatePersonne(Utilisateur personne)
+>>>>>>> Stashed changes:DFRCronos2000/Factories/DataService.cs
     {
         String procedure = "CreatePersonne";
         bool value = false;
@@ -125,7 +152,11 @@ public class DataService : IDataService
         return value;
     }
 
+<<<<<<< Updated upstream:DFR_Cronos2000/Factories/DataService.cs
     public bool UpdatePersonne(Personne personne)
+=======
+    public bool UpdatePersonne(Utilisateur personne)
+>>>>>>> Stashed changes:DFRCronos2000/Factories/DataService.cs
     {
         String procedure = "UpdatePersonne";
         bool value = false;
