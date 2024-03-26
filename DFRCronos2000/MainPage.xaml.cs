@@ -9,7 +9,7 @@ namespace DFRCronos2000
 
         public MainPage()
         {
-            InitializeComponent();
+            InitializeComponent(); 
         }
 
         private void Tentative_Connexion(object sender, EventArgs e)
@@ -26,7 +26,7 @@ namespace DFRCronos2000
                 {
                     if (personne.IdRole == 1)
                     {
-                        Navigation.PushAsync(new Adminisatration());
+                        Navigation.PushAsync(new Administration());
                     }
                     else
                         Navigation.PushAsync(new Pointage());

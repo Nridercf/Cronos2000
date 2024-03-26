@@ -95,5 +95,7 @@ insert into RoleUtil(Libelle)
 values('employee')
 
 exec CreatePersonne @Nom = 'Follet', @Prenom = 'Yaroslav', @Matricule = 'Admin', @MDP = 'c1c224b03cd9bc7b6a86d77f5dace40191766c485cd55dc48caf9ac873335d', @IdRole = 1
-
+exec CreatePersonne @Nom = 'Delattre', @Prenom = 'Louis', @Matricule = 'UserTest', @MDP = '89B1360879DDAE764E1261AD23837C8033399E68BF795B6E939EB2166BC59E', @IdRole = 2
 exec GetPersonneMatricule @Matricule = 'Admin'
+
+
