@@ -38,17 +38,19 @@ public class DataService : IDataService
 
 
         _connexion.Open();
-        using (SqlCommand command = new SqlCommand(procedure, _connexion))
+        using (SqlCommand command = new SqlCommand(procedure, _connexion)) // create a new command object with the stored procedure
         {
-            command.CommandType = CommandType.StoredProcedure;
-            using (SqlDataReader reader = command.ExecuteReader())
+            command.CommandType = CommandType.StoredProcedure; // set the command type to stored procedure
+            using (SqlDataReader reader = command.ExecuteReader()) // execute the stored procedure
             {
-                values = reader.Cast<IDataRecord>().Select(r => new Utilisateur
+                values = reader.Cast<IDataRecord>().Select(r => new Utilisateur // convert the result to a list of Utilisateur objects
 
                 {
-                    IdUtil = r["Id"] as int?,
+                    IdUtil = r["IdUtil"] as int?,
                     Nom = r["Nom"] as string,
-                    Prenom = r["Prenom"] as string
+                    Prenom = r["Prenom"] as string,
+                    Matricule = r["Matricule"] as string,
+                    IdRole = r["IdRole"] as int?
                 }).ToList();
             }
         }

@@ -6,7 +6,10 @@
     <ActiveDebugProfile>Windows Machine</ActiveDebugProfile>
   </PropertyGroup>
   <ItemGroup>
-    <MauiXaml Update="Adminisatration.xaml">
+    <MauiXaml Update="Administration.xaml">
+      <SubType>Designer</SubType>
+    </MauiXaml>
+    <MauiXaml Update="AjoutUtilisateur.xaml">
       <SubType>Designer</SubType>
     </MauiXaml>
     <MauiXaml Update="Pointage.xaml">
