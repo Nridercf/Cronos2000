@@ -18,7 +18,7 @@ create table Utilisateur
 (
 	IdUtil int identity(1,1),
 	Matricule varchar(15) unique,
-	MDP varchar(50),
+	MDP varchar(255),
 	Nom varchar(38),
 	Prenom varchar(38),
 	IdRole int,
@@ -60,7 +60,7 @@ begin
 end
 go
 
-create proc CreatePersonne @Nom varchar(38),@Prenom varchar(38),@Matricule varchar(15),@MDP varchar(50),@IdRole int
+create proc CreatePersonne @Nom varchar(38),@Prenom varchar(38),@Matricule varchar(15),@MDP varchar(255),@IdRole int
 as
 begin
 	insert into Utilisateur (Nom,Prenom,Matricule,MDP,IdRole)
@@ -68,7 +68,7 @@ begin
 end
 go
 
-create proc UpdatePersonne @Id int,@Nom varchar(38),@Prenom varchar(38),@Matricule varchar(15),@MDP varchar(50),@IdRole int
+create proc UpdatePersonne @Id int,@Nom varchar(38),@Prenom varchar(38),@Matricule varchar(15),@MDP varchar(255),@IdRole int
 as
 begin
 	update Utilisateur
@@ -94,6 +94,6 @@ values('Administation')
 insert into RoleUtil(Libelle)
 values('employee')
 
-exec CreatePersonne @Nom = 'Follet', @Prenom = 'Yaroslav', @Matricule = 'Admin', @MDP = 'c1c224b03cd9bc7b6a86d77f5dace40191766c485cd55dc48caf9ac873335d6f', @IdRole = 1
+exec CreatePersonne @Nom = 'Follet', @Prenom = 'Yaroslav', @Matricule = 'Admin', @MDP = 'c1c224b03cd9bc7b6a86d77f5dace40191766c485cd55dc48caf9ac873335d', @IdRole = 1
 
 exec GetPersonneMatricule @Matricule = 'Admin'

@@ -20,8 +20,9 @@ namespace DFRCronos2000
             var personne = _dataService.GetPersonne(matricule);
             if (personne != null)
             {
-                var dbNDP = Hashage.Hash(mdp);
-                if (personne.Mdp == dbNDP)
+                var dbMDP = Hashage.Hash(mdp);
+                var userMDP = personne.Mdp.ToUpper();
+                if (userMDP == dbMDP)
                 {
                     if (personne.IdRole == 1)
                     {
