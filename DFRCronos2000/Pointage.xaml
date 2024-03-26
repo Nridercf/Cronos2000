@@ -1,7 +1,8 @@
-﻿<?xml version="1.0" encoding="utf-8" ?>
+<?xml version="1.0" encoding="utf-8" ?>
 <ContentPage xmlns="http://schemas.microsoft.com/dotnet/2021/maui"
              xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
-             x:Class="DFRCronos2000.MainPage">
+             x:Class="DFRCronos2000.Pointage"
+             Title="">
     <Grid>
         <Grid.RowDefinitions>
             <RowDefinition Height="10"/>
@@ -20,10 +21,7 @@
                 <ColumnDefinition Width="55*"/>
             </Grid.ColumnDefinitions>
             <StackLayout Grid.Column="1" HorizontalOptions="Center" VerticalOptions="Center">
-                <Label Text="Cronos 2000" FontSize="Large" Grid.Column="0" HorizontalOptions="Center" VerticalOptions="Center" Margin="10" />
-                <Entry Placeholder="Matricule" x:Name="Matricule" MaxLength="15" HorizontalOptions="Center" VerticalOptions="Center" WidthRequest="150"  Margin="10"/>
-                <Entry Placeholder="Mot de Passe" x:Name="MDP" MaxLength="30" HorizontalOptions="Center" VerticalOptions="Center" WidthRequest="150" IsPassword="True" Margin="10"/>
-                <Button Text="Connection" HorizontalOptions="Center" VerticalOptions="Center" WidthRequest="150" Clicked="Tentative_Connexion" />
+                <Label Text="Pointage" x:Name="Test" FontSize="Large" Grid.Column="0" HorizontalOptions="Center" VerticalOptions="Center" Margin="10" />
             </StackLayout>
 
 

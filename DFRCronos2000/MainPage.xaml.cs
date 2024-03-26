@@ -1,6 +1,7 @@
+using DFRCronos2000;
 using DFRCronos2000.Factories;
 
-namespace DFR_Cronos2000
+namespace DFRCronos2000
 {
     public partial class MainPage : ContentPage
     {
@@ -27,7 +28,7 @@ namespace DFR_Cronos2000
                         Navigation.PushAsync(new Adminisatration());
                     }
                     else
-                    Navigation.PushAsync(new Pointage());
+                        Navigation.PushAsync(new Pointage());
                 }
                 else
                 {
