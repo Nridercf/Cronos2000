@@ -49,14 +49,14 @@ go
 create proc GetPersonne @IdUtil int
 as  
 begin	
-	select IdUtil,Matricule,Nom,Prenom from Utilisateur where @IdUtil = IdUtil
+	select IdUtil,Matricule,Nom,Prenom,IdRole from Utilisateur where @IdUtil = IdUtil
 end
 go
 
 create proc GetPersonneMatricule @Matricule varchar(15)
 as  
 begin	
-	select IdUtil,Matricule,Nom,Prenom,MDP from Utilisateur where @Matricule = Matricule
+	select IdUtil,Matricule,Nom,Prenom,MDP,IdRole from Utilisateur where @Matricule = Matricule
 end
 go
 
@@ -94,6 +94,6 @@ values('Administation')
 insert into RoleUtil(Libelle)
 values('employee')
 
-exec CreatePersonne @Nom = 'Follet', @Prenom = 'Yaroslav', @Matricule = 'Admin', @MDP = '??$?<??{j??\u007f]??\u0001?vlH\\?]?????s3]o', @IdRole = 1
+exec CreatePersonne @Nom = 'Follet', @Prenom = 'Yaroslav', @Matricule = 'Admin', @MDP = 'c1c224b03cd9bc7b6a86d77f5dace40191766c485cd55dc48caf9ac873335d6f', @IdRole = 1
 
 exec GetPersonneMatricule @Matricule = 'Admin'
