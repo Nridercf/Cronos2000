@@ -5,6 +5,6 @@ public partial class Pointage : ContentPage
     public Pointage()
     {
         InitializeComponent();
-        Test.Text = "Hello World";
+        Test.Text = "Hello Bitch";
     }
 }
