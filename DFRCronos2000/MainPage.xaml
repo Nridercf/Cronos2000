@@ -10,9 +10,7 @@
             <ColumnDefinition Width="50*"/>
         </Grid.ColumnDefinitions>
         <Image  Grid.Column="0" Source="connexion.png"   Aspect="Fill" VerticalOptions="Center"/>
-
-        
-
+        <Label Text="Bienvenue sur notre plateforme de pointage en ligne !" FontSize="70" FontFamily="sans-serif " FontAttributes=" Italic" TextColor="White" HorizontalOptions="Center" VerticalOptions="Start"/>
         <Grid Grid.Column="1">
             <Grid.RowDefinitions>
                 <RowDefinition Height="10"/>
