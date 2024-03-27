@@ -1,10 +1,10 @@
 ﻿namespace DFRCronos2000.Models
 {
-    internal class Pointage
+    public class PointageData
     {
-        public int IdPointage { get; set; }
-        public int IdUtil { get; set; }
-        public DateTime DateHeureArrivee { get; set; }
-        public DateTime DateHeureSortie { get; set; }
+        public int? IdPointage { get; set; }
+        public int? IdUtil { get; set; }
+        public DateTime? DateHeureArrivee { get; set; }
+        public DateTime? DateHeureSortie { get; set; }
     }
 }

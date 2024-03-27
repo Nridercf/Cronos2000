@@ -13,6 +13,8 @@ public interface IDataService
     bool CreatePersonne(Utilisateur personne);
     bool UpdatePersonne(Utilisateur personne);
     bool DeletePersonne(int id);
+
+    List<Pointage> GetPointagesUtil(int id);
 }
 
 public class DataService : IDataService
@@ -164,6 +166,90 @@ public class DataService : IDataService
         {
             command.CommandType = CommandType.StoredProcedure;
             command.Parameters.AddWithValue("@Id", id);
+            value = command.ExecuteNonQuery() > 0;
+        }
+        _connexion.Close();
+        return value;
+    }
+    // Partie Pointages
+    public List<PointageData> GetPointagesUtil(int id)
+    {
+        String procedure = "GetPointagesUtil";
+        List<PointageData> values;
+
+        _connexion.Open();
+        using (SqlCommand command = new SqlCommand(procedure, _connexion)) // create a new command object with the stored procedure
+        {
+            command.CommandType = CommandType.StoredProcedure; // set the command type to stored procedure
+            command.Parameters.AddWithValue("@IdUtil", id);
+            using (SqlDataReader reader = command.ExecuteReader()) // execute the stored procedure
+            {
+                values = reader.Cast<IDataRecord>().Select(r => new PointageData // convert the result to a list of Pointage objects
+                {
+                    IdPointage = r["IdPointage"] as int?,
+                    IdUtil = r["IdUtil"] as int?,
+                    DateHeureArrivee = r["DateHeureArrivee"] as DateTime?,
+                    DateHeureSortie = r["DateHeureArrivee"] as DateTime?,
+                }).ToList();
+            }
+        }
+        _connexion.Close();
+        return values;
+    }
+
+    public PointageData GetPointageOuvertUtil(int id)
+    {
+        String procedure = "GetPointageOuvertUtil";
+        PointageData value;
+
+        _connexion.Open();
+        using (SqlCommand command = new SqlCommand(procedure, _connexion)) // create a new command object with the stored procedure
+        {
+            command.CommandType = CommandType.StoredProcedure; // set the command type to stored procedure
+            command.Parameters.AddWithValue("@IdUtil", id);
+            using (SqlDataReader reader = command.ExecuteReader()) // execute the stored procedure
+            {
+                value = reader.Cast<IDataRecord>().Select(r => new PointageData // convert the result to a list of Pointage objects
+                {
+                    IdPointage = r["IdPointage"] as int?,
+                    IdUtil = r["IdUtil"] as int?,
+                    DateHeureArrivee = r["DateHeureArrivee"] as DateTime?,
+                    DateHeureSortie = r["DateHeureArrivee"] as DateTime?,
+                }).FirstOrDefault();
+        }
+        }
+        _connexion.Close();
+        return value;
+    }
+
+    public bool UpdatePointage(int id, DateTime date)
+    {
+        String procedure = "UpdatePointage";
+        bool value = false;
+
+        _connexion.Open();
+        using (SqlCommand command = new SqlCommand(procedure, _connexion))
+        {
+            command.CommandType = CommandType.StoredProcedure;
+            command.Parameters.AddWithValue("@Id", id);
+            command.Parameters.AddWithValue("@Sortie", date);
+            value = command.ExecuteNonQuery() > 0;
+        }
+        _connexion.Close();
+        return value;
+    }
+
+    public bool CreatePointage(int id, DateTime dateDebut)
+    {
+        String procedure = "CreatePersonne";
+        bool value = false;
+
+        _connexion.Open();
+        using (SqlCommand command = new SqlCommand(procedure, _connexion))
+        {
+            command.CommandType = CommandType.StoredProcedure;
+            command.Parameters.AddWithValue("@IdUtil", id);
+            command.Parameters.AddWithValue("@Arrivee", dateDebut);
             value = command.ExecuteNonQuery() > 0;
         }
         _connexion.Close();
