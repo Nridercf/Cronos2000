@@ -1,19 +1,17 @@
 <?xml version="1.0" encoding="utf-8" ?>
 <ContentPage xmlns="http://schemas.microsoft.com/dotnet/2021/maui"
              xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
-             x:Class="DFRCronos2000.AjoutUtilisateur"
-             Title="AjoutUtilisateur">
+             x:Class="DFRCronos2000.ModifieUtilisateur"
+             Title="ModifieUtilisateur">
     <VerticalStackLayout>
         <Entry x:Name="EntryNom"
-            Placeholder="Nom"/>
+               Placeholder="Nom"/>
         <Entry x:Name="EntryPrenom"
-            Placeholder="Prenom"/>
-        <Entry x:Name="EntryMDP"
-            Placeholder="Mot de passe"/>
+               Placeholder="Prenom"/>
         <Entry x:Name="EntryMatricule"
-           Placeholder="Matricule"/>
+              Placeholder="Matricule"/>
         <Picker x:Name="PickerRole"
-            Title="Role" ItemsSource="{Binding _roles}" />
+               Title="Role" ItemsSource="{Binding _roles}" />
         <Button Text="Sauvegarder" Clicked="ValidationModification"/>
 
     </VerticalStackLayout>

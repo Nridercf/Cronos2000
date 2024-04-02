@@ -42,7 +42,14 @@ go
 create proc GetPersonnes 
 as
 begin	
-	select IdUtil,Matricule,Nom,Prenom from Utilisateur
+	select IdUtil,Matricule,Nom,Prenom,IdRole from Utilisateur
+end
+go
+
+create proc GetRoles 
+as
+begin	
+	select IdRole,Libelle from RoleUtil
 end
 go
 

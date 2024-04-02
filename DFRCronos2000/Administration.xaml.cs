@@ -19,8 +19,22 @@ public partial class Administration : ContentPage
     {
         Button button = (Button)sender;
         int id = (int)button.CommandParameter;
-        //Modifier nouvellePage = new Modifier(id);
-        //Navigation.InsertPageBefore(nouvellePage, this);
-        //Navigation.PopAsync();
+        var utilisateurAModif = new ModifieUtilisateur(id);
+        Navigation.InsertPageBefore(utilisateurAModif, this);
+        Navigation.PopAsync();
+    }
+
+    private void OnDeleteClicked(object sender, EventArgs e)
+    {
+        Button button = (Button)sender;
+        int id = (int)button.CommandParameter;
+        _dataService.DeletePersonne(id);
+        utilisateurs = _dataService.GetPersonnes();
+        BindingContext = this;
+    }
+
+    private void OnAjouteClicked(object sender, EventArgs e)
+    {
+        Navigation.PushAsync(new AjoutUtilisateur());
     }
 }

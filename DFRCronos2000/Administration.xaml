@@ -16,7 +16,13 @@
         </Grid.ColumnDefinitions>
 
         <Grid Grid.Row="1" Grid.Column="1">
-            <Border  Grid.Column="1" Grid.Row="1" BackgroundColor="#C4802F">
+            <Grid.RowDefinitions>
+                <RowDefinition Height="10"/>
+                <RowDefinition Height="*"/>
+            </Grid.RowDefinitions>
+            <Button  Grid.Row="0" Text="Ajouter" WidthRequest="15" HeightRequest="15" BackgroundColor="Black" Padding="2" Clicked="OnAjouteClicked"/>
+
+            <Border Grid.Row="1" BackgroundColor="#C4802F">
                 <ListView ItemsSource="{Binding utilisateurs}" Grid.Column="1" Grid.Row="1">
                     <ListView.ItemTemplate>
                         <DataTemplate>
@@ -35,9 +41,9 @@
                                     <Label Padding="2" Grid.Column="2" Text="{Binding Prenom}" TextColor="white" VerticalOptions="Center"/>
                                     <Label Padding="2" Grid.Column="3" Text="{Binding Matricule}" TextColor="white" VerticalOptions="Center"/>
                                     <Label Padding="2" Grid.Column="0" Text="{Binding IdRole}" TextColor="white" VerticalOptions="Center"/>
-                                    <Button Grid.Column="4" Text="Modifier" Clicked="OnEditClicked" CommandParameter="{Binding Id}" WidthRequest="15" HeightRequest="15" BackgroundColor="Transparent" Padding="2"/>
-                                    <Button Grid.Column="5" Text="Reinitailiastion Mot De Passe" CommandParameter="{Binding Id}" WidthRequest="15" HeightRequest="15" BackgroundColor="Transparent" Padding="2"/>
-                                    <Button Grid.Column="6" Text="Supréssion" CommandParameter="{Binding Id}" WidthRequest="15" HeightRequest="15" BackgroundColor="Transparent" Padding="2"/>
+                                    <Button Grid.Column="4" Text="Modifier" Clicked="OnEditClicked" CommandParameter="{Binding IdUtil}" WidthRequest="15" HeightRequest="15" BackgroundColor="Transparent" Padding="2"/>
+                                    <Button Grid.Column="5" Text="Reinitailiastion Mot De Passe" CommandParameter="{Binding IdUtil}" WidthRequest="15" HeightRequest="15" BackgroundColor="Transparent" Padding="2"/>
+                                    <Button Grid.Column="6" Text="Supréssion" CommandParameter="{Binding IdUtil}" WidthRequest="15" HeightRequest="15" BackgroundColor="Transparent" Padding="2"/>
                                 </Grid>
                             </ViewCell>
                         </DataTemplate>
