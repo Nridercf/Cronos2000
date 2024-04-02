@@ -5,9 +5,13 @@ namespace DFRCronos2000;
 
 public partial class Pointage : ContentPage
 {
-    public Pointage()
+    private readonly DataService _dataService = new();
+    public List<Pointage> pointages { get; set; }
+    public Pointage(Utilisateur utilisateur)
     {
         InitializeComponent();
+        pointages = _dataService.GetPointagesUtil(utilisateur.IdUtil);
+        BindingContext = this;
         Test.Text = "Hello Bitch";
     }
 }

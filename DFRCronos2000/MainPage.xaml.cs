@@ -29,7 +29,7 @@ namespace DFRCronos2000
                         Navigation.PushAsync(new Administration());
                     }
                     else
-                        Navigation.PushAsync(new Pointage());
+                        Navigation.PushAsync(new Pointage(personne));
                 }
                 else
                 {

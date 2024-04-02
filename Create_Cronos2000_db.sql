@@ -102,11 +102,11 @@ begin
 end
 go
 
-create proc CreatePointage @IdUtil int,@arrivee datetime
+create proc CreatePointage @IdUtil int,@Arrivee datetime
 as
 begin
 	insert into Pointage (IdUtil, dateHeureArriver, dateHeureSortie)
-	values(@IdUtil, @arrivee, null)
+	values(@IdUtil, @Arrivee, null)
 end
 go
 
