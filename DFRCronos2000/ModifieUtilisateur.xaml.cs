@@ -17,7 +17,8 @@ public partial class ModifieUtilisateur : ContentPage
         EntryMatricule.Text = modifPersonne.Matricule;
         _roles = _dataService.GetRoles();
         PickerRole.ItemsSource = _roles;
-        PickerRole.SelectedIndex = (int)modifPersonne.IdRole;
+        PickerRole.ItemDisplayBinding = new Binding("Libelle");
+        PickerRole.SelectedItem = _roles.Where(r => r.IdRole == modifPersonne.RoleUtil.IdRole).FirstOrDefault();
         BindingContext = this;
 	}
 
@@ -26,8 +27,9 @@ public partial class ModifieUtilisateur : ContentPage
         modifPersonne.Nom = EntryNom.Text;
 		modifPersonne.Prenom = EntryPrenom.Text;
 		modifPersonne.Matricule = EntryMatricule.Text;
-        modifPersonne.IdRole = PickerRole.SelectedIndex;
+        modifPersonne.RoleUtil.IdRole = PickerRole.SelectedIndex;
         _dataService.UpdatePersonne(modifPersonne);
+        this.Navigation.PopAsync();
     }
 
 

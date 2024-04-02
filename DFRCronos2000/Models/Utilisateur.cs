@@ -8,5 +8,6 @@ public class Utilisateur
     public string Matricule { get; set; }
     public string Mdp { get; set; }
 
-    public int? IdRole { get; set; }
+    public Role? RoleUtil { get; set; }
+
 }

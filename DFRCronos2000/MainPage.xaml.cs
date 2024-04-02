@@ -24,7 +24,7 @@ namespace DFRCronos2000
                 var userMDP = personne.Mdp.ToUpper();
                 if (userMDP == dbMDP)
                 {
-                    if (personne.IdRole == 1)
+                    if (personne.RoleUtil.IdRole == 1)
                     {
                         Navigation.PushAsync(new Administration());
                     }
