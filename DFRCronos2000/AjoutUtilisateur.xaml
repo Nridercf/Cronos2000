@@ -13,7 +13,7 @@
         <Entry x:Name="EntryMatricule"
            Placeholder="Matricule"/>
         <Picker x:Name="PickerRole"
-            Title="Role" ItemsSource="{Binding _roles}" />
+            Title="Role" />
         <Button Text="Sauvegarder" Clicked="ValidationModification"/>
 
     </VerticalStackLayout>

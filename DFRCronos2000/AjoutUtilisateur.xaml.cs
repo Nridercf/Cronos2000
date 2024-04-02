@@ -12,6 +12,8 @@ public partial class AjoutUtilisateur : ContentPage
 	{
 		InitializeComponent();
         _roles = _dataService.GetRoles();
+        PickerRole.ItemsSource = _roles;
+        PickerRole.ItemDisplayBinding = new Binding("Libelle");
         BindingContext = this;
 
     }
@@ -22,7 +24,8 @@ public partial class AjoutUtilisateur : ContentPage
         creePersonne.Prenom = EntryPrenom.Text;
         creePersonne.Matricule = EntryMatricule.Text;
         creePersonne.Mdp = Hashage.Hash(EntryMDP.Text);
-        creePersonne.IdRole = PickerRole.SelectedIndex;
+        creePersonne.RoleUtil = (Role)PickerRole.SelectedItem;
         _dataService.CreatePersonne(creePersonne);
+        this.Navigation.PopAsync();
     }
 }

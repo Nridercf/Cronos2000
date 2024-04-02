@@ -36,14 +36,15 @@
                                         <ColumnDefinition Width="1*"/>
                                         <ColumnDefinition Width="1*"/>
                                         <ColumnDefinition Width="1*"/>
+                                        <ColumnDefinition Width="1*"/>
                                     </Grid.ColumnDefinitions>
                                     <Label Padding="2" Grid.Column="1" Text="{Binding Nom}" TextColor="white" VerticalOptions="Center"/>
                                     <Label Padding="2" Grid.Column="2" Text="{Binding Prenom}" TextColor="white" VerticalOptions="Center"/>
                                     <Label Padding="2" Grid.Column="3" Text="{Binding Matricule}" TextColor="white" VerticalOptions="Center"/>
-                                    <Label Padding="2" Grid.Column="0" Text="{Binding IdRole}" TextColor="white" VerticalOptions="Center"/>
-                                    <Button Grid.Column="4" Text="Modifier" Clicked="OnEditClicked" CommandParameter="{Binding IdUtil}" WidthRequest="15" HeightRequest="15" BackgroundColor="Transparent" Padding="2"/>
-                                    <Button Grid.Column="5" Text="Reinitailiastion Mot De Passe" CommandParameter="{Binding IdUtil}" WidthRequest="15" HeightRequest="15" BackgroundColor="Transparent" Padding="2"/>
-                                    <Button Grid.Column="6" Text="Supréssion" CommandParameter="{Binding IdUtil}" WidthRequest="15" HeightRequest="15" BackgroundColor="Transparent" Padding="2"/>
+                                    <Label Padding="2" Grid.Column="4" Text="{Binding RoleUtil.Libelle}" TextColor="white" VerticalOptions="Center"/>
+                                    <Button Grid.Column="5" Text="Modifier" Clicked="OnEditClicked" CommandParameter="{Binding IdUtil}" WidthRequest="15" HeightRequest="15" BackgroundColor="Transparent" Padding="2"/>
+                                    <Button Grid.Column="6" Text="Reinitailiastion Mot De Passe" CommandParameter="{Binding IdUtil}" WidthRequest="15" HeightRequest="15" BackgroundColor="Transparent" Padding="2"/>
+                                    <Button Grid.Column="7" Text="Supréssion" CommandParameter="{Binding IdUtil}" WidthRequest="15" HeightRequest="15" BackgroundColor="Transparent" Padding="2"/>
                                 </Grid>
                             </ViewCell>
                         </DataTemplate>

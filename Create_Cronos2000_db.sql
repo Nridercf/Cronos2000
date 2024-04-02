@@ -42,7 +42,7 @@ go
 create proc GetPersonnes 
 as
 begin	
-	select IdUtil,Matricule,Nom,Prenom,IdRole from Utilisateur
+	select IdUtil,Matricule,Nom,Prenom,Utilisateur.IdRole as IdRole,RoleUtil.Libelle as LibelleRole from Utilisateur inner join RoleUtil on Utilisateur.IdRole=RoleUtil.IdRole
 end
 go
 
@@ -56,7 +56,7 @@ go
 create proc GetPersonne @IdUtil int
 as  
 begin	
-	select IdUtil,Matricule,Nom,Prenom,IdRole from Utilisateur where @IdUtil = IdUtil
+	select IdUtil,Matricule,Nom,Prenom,Utilisateur.IdRole,RoleUtil.Libelle as LibelleRole from Utilisateur inner join RoleUtil on Utilisateur.IdRole=RoleUtil.IdRole where @IdUtil = IdUtil
 end
 go
 
@@ -75,14 +75,13 @@ begin
 end
 go
 
-create proc UpdatePersonne @Id int,@Nom varchar(38),@Prenom varchar(38),@Matricule varchar(15),@MDP varchar(255),@IdRole int
+create proc UpdatePersonne @Id int,@Nom varchar(38),@Prenom varchar(38),@Matricule varchar(15),@IdRole int
 as
 begin
 	update Utilisateur
 	set Nom = @Nom,
 	Prenom = @Prenom,
 	Matricule = @Matricule,
-	MDP = @MDP,
 	IdRole = @IdRole
 	where IdUtil = @Id
 end
@@ -99,10 +98,15 @@ insert into RoleUtil(Libelle)
 values('Administation')
 
 insert into RoleUtil(Libelle)
-values('employee')
+values('Employee')
+
+insert into RoleUtil(Libelle)
+values('Visiteur')
 
 exec CreatePersonne @Nom = 'Follet', @Prenom = 'Yaroslav', @Matricule = 'Admin', @MDP = 'c1c224b03cd9bc7b6a86d77f5dace40191766c485cd55dc48caf9ac873335d', @IdRole = 1
 exec CreatePersonne @Nom = 'Delattre', @Prenom = 'Louis', @Matricule = 'UserTest', @MDP = '89B1360879DDAE764E1261AD23837C8033399E68BF795B6E939EB2166BC59E', @IdRole = 2
 exec GetPersonneMatricule @Matricule = 'Admin'
+exec GetPersonnes
+
 
 

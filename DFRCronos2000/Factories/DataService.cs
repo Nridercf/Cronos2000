@@ -52,7 +52,11 @@ public class DataService : IDataService
                     Nom = r["Nom"] as string,
                     Prenom = r["Prenom"] as string,
                     Matricule = r["Matricule"] as string,
-                    IdRole = r["IdRole"] as int?
+                    RoleUtil = new Role
+                    {
+                        IdRole = r["IdRole"] as int?,
+                        Libelle = r["LibelleRole"] as string
+                    }
                 }).ToList();
             }
         }
@@ -102,7 +106,11 @@ public class DataService : IDataService
                     Nom = r["Nom"] as string,
                     Prenom = r["Prenom"] as string,
                     Matricule = r["Matricule"] as string,
-                    IdRole = r["IdRole"] as int?
+                    RoleUtil = new Role
+                    {
+                        IdRole = r["IdRole"] as int?,
+                        Libelle = r["LibelleRole"] as string
+                    }
                 }).FirstOrDefault();
             }
         }
@@ -129,8 +137,10 @@ public class DataService : IDataService
                     Prenom = r["Prenom"] as string,
                     Matricule = r["Matricule"] as string,
                     Mdp = r["MDP"] as string,
-                    IdRole = r["IdRole"] as int?
-
+                    RoleUtil = new Role
+                    {
+                        IdRole = r["IdRole"] as int?
+                    }
                 }).FirstOrDefault();
             }
         }
@@ -154,6 +164,7 @@ public class DataService : IDataService
             command.Parameters.AddWithValue("@Prenom", personne.Prenom);
             command.Parameters.AddWithValue("@Matricule", personne.Matricule);
             command.Parameters.AddWithValue("@MDP", personne.Mdp);
+            command.Parameters.AddWithValue("@IdRole", personne.RoleUtil.IdRole);
 
             value = command.ExecuteNonQuery() > 0;
         }
@@ -175,6 +186,9 @@ public class DataService : IDataService
             command.Parameters.AddWithValue("@Id", personne.IdUtil);
             command.Parameters.AddWithValue("@Nom", personne.Nom);
             command.Parameters.AddWithValue("@Prenom", personne.Prenom);
+            command.Parameters.AddWithValue("@Matricule", personne.Matricule);
+            command.Parameters.AddWithValue("@IdRole", personne.RoleUtil.IdRole);
+
             value = command.ExecuteNonQuery() > 0;
         }
         _connexion.Close();
