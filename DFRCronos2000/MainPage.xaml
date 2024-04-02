@@ -9,9 +9,13 @@
             <ColumnDefinition Width="50*"/>
             <ColumnDefinition Width="50*"/>
         </Grid.ColumnDefinitions>
-        <Image  Grid.Column="0" Source="connexion.png"   Aspect="Fill" VerticalOptions="Center"/>
+        <Image x:Name="monImage" Grid.Column="0" Source="connexion.png"   Aspect="Fill" VerticalOptions="Center">
+            <Image.GestureRecognizers>
+                <TapGestureRecognizer Tapped="MonImage_Tapped" />
+            </Image.GestureRecognizers>
+        </Image>
 
-        
+
 
         <Grid Grid.Column="1">
             <Grid.RowDefinitions>

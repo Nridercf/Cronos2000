@@ -1,5 +1,7 @@
 using DFRCronos2000;
 using DFRCronos2000.Factories;
+using Plugin.Maui.Audio;
+using FileSystem = Microsoft.Maui.Storage.FileSystem;
 
 namespace DFRCronos2000
 {
@@ -9,7 +11,7 @@ namespace DFRCronos2000
 
         public MainPage()
         {
-            InitializeComponent(); 
+            InitializeComponent();
         }
 
         private void Tentative_Connexion(object sender, EventArgs e)
@@ -41,6 +43,23 @@ namespace DFRCronos2000
                 DisplayAlert("Erreur", "Matricule inconnu", "OK");
             }
 
+        }
+
+        private async void MonImage_Tapped(object sender, EventArgs e)
+        {
+            Random random = new Random();
+            int randomNumber = random.Next(2);
+            string musique;
+            if (randomNumber == 0)
+            {
+                musique = "summerplace.mp3";
+            }
+            else
+            {
+                musique = "walibi.mp3";
+            }
+            var audioPlayer = AudioManager.Current.CreatePlayer(await FileSystem.OpenAppPackageFileAsync(musique));
+            audioPlayer.Play();
         }
     }
 
