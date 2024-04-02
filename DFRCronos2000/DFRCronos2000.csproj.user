@@ -12,6 +12,9 @@
     <MauiXaml Update="AjoutUtilisateur.xaml">
       <SubType>Designer</SubType>
     </MauiXaml>
+    <MauiXaml Update="ModifieUtilisateur.xaml">
+      <SubType>Designer</SubType>
+    </MauiXaml>
     <MauiXaml Update="Pointage.xaml">
       <SubType>Designer</SubType>
     </MauiXaml>
