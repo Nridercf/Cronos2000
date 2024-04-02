@@ -91,7 +91,7 @@ go
 create proc GetPointagesUtil @IdUtil int
 as
 begin
-	select IdPointage, IdUtil, dateHeureArriver, dateHeureSortie from pointage where @IdUtil = IdUtil
+	select TOP 5 IdPointage, IdUtil, dateHeureArriver, dateHeureSortie from pointage where @IdUtil = IdUtil ORDER BY dateHeureArriver DESC
 end
 go
 
@@ -129,4 +129,4 @@ exec CreatePersonne @Nom = 'Follet', @Prenom = 'Yaroslav', @Matricule = 'Admin',
 exec CreatePersonne @Nom = 'Delattre', @Prenom = 'Louis', @Matricule = 'UserTest', @MDP = '89B1360879DDAE764E1261AD23837C8033399E68BF795B6E939EB2166BC59E', @IdRole = 2
 exec GetPersonneMatricule @Matricule = 'Admin'
 
-
+SELECT * FROM Pointage

@@ -17,7 +17,7 @@ public interface IDataService
     List<Pointage> GetPointagesUtil(int id);
 }
 
-public class DataService : IDataService
+public class DataService
 {
     private readonly SqlConnection _connexion;
     public DataService()
@@ -188,8 +188,8 @@ public class DataService : IDataService
                 {
                     IdPointage = r["IdPointage"] as int?,
                     IdUtil = r["IdUtil"] as int?,
-                    DateHeureArrivee = r["DateHeureArrivee"] as DateTime?,
-                    DateHeureSortie = r["DateHeureArrivee"] as DateTime?,
+                    DateHeureArrivee = r["DateHeureArriver"] as DateTime?,
+                    DateHeureSortie = r["DateHeureSortie"] as DateTime?,
                 }).ToList();
             }
         }
@@ -213,8 +213,8 @@ public class DataService : IDataService
                 {
                     IdPointage = r["IdPointage"] as int?,
                     IdUtil = r["IdUtil"] as int?,
-                    DateHeureArrivee = r["DateHeureArrivee"] as DateTime?,
-                    DateHeureSortie = r["DateHeureArrivee"] as DateTime?,
+                    DateHeureArrivee = r["DateHeureArriver"] as DateTime?,
+                    DateHeureSortie = r["DateHeureSortie"] as DateTime?,
                 }).FirstOrDefault();
         }
         }
@@ -241,7 +241,7 @@ public class DataService : IDataService
 
     public bool CreatePointage(int id, DateTime dateDebut)
     {
-        String procedure = "CreatePersonne";
+        String procedure = "CreatePointage";
         bool value = false;
 
         _connexion.Open();

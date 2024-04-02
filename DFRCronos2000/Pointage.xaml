@@ -3,29 +3,54 @@
              xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
              x:Class="DFRCronos2000.Pointage"
              Title="">
-    <Grid>
-        <Grid.RowDefinitions>
-            <RowDefinition Height="10"/>
-            <RowDefinition Height="*"/>
-            <RowDefinition Height="10"/>
-        </Grid.RowDefinitions>
-        <Grid.ColumnDefinitions>
-            <ColumnDefinition Width="10"/>
-            <ColumnDefinition Width="*"/>
-            <ColumnDefinition Width="10"/>
-        </Grid.ColumnDefinitions>
+    <ScrollView>
+        <VerticalStackLayout
+                    Spacing="25"
+                    Padding="30,0"
+                    VerticalOptions="Center">
 
-        <Grid Grid.Row="1" Grid.Column="1">
-            <Grid.ColumnDefinitions>
-                <ColumnDefinition Width="45*"/>
-                <ColumnDefinition Width="55*"/>
-            </Grid.ColumnDefinitions>
-            <StackLayout Grid.Column="1" HorizontalOptions="Center" VerticalOptions="Center">
-                <Label Text="Pointage" x:Name="Test" FontSize="Large" Grid.Column="0" HorizontalOptions="Center" VerticalOptions="Center" Margin="10" />
-            </StackLayout>
+            <Button
+                        x:Name="Pointer"
+                        Text="Récupération des données..."
+                        TextColor="black"
+                        FontAttributes="Bold"
+                        SemanticProperties.Hint="cliquez pour badger / débadger>"
+                        Clicked="OnPointerClicked"
+                        HorizontalOptions="Center"
+                        BackgroundColor="grey"/>
 
-
-        </Grid>
-    </Grid>
-
+            <Grid>
+                <Grid.RowDefinitions>
+                    <RowDefinition Height="1*"/>
+                    <RowDefinition Height="3*"/>
+                    <RowDefinition Height="1*"/>
+                </Grid.RowDefinitions>
+                <Grid.ColumnDefinitions>
+                    <ColumnDefinition Width="1*"/>
+                    <ColumnDefinition Width="4*"/>
+                    <ColumnDefinition Width="1*"/>
+                </Grid.ColumnDefinitions>
+                <Border  Grid.Column="1" Grid.Row="1" BackgroundColor="#C4802F">
+                    <ListView ItemsSource="{Binding Pointages}" Grid.Column="1" Grid.Row="1">
+                        <ListView.ItemTemplate>
+                            <DataTemplate>
+                                <ViewCell>
+                                    <Grid>
+                                        <Grid.ColumnDefinitions>
+                                            <ColumnDefinition Width="1*"/>
+                                            <ColumnDefinition Width="1*"/>
+                                            <ColumnDefinition Width="1*"/>
+                                        </Grid.ColumnDefinitions>
+                                        <Label Padding="2" Grid.Column="0" Text="{Binding IdUtil}" FontAttributes="Bold" TextColor="DarkGray" VerticalOptions="Center"/>
+                                        <Label Padding="2" Grid.Column="1" Text="{Binding DateHeureArrivee, StringFormat='Entrée : {0}'}" TextColor="DarkGray" VerticalOptions="Center"/>
+                                        <Label Padding="2" Grid.Column="2" Text="{Binding DateHeureSortie, StringFormat='Sortie : {0}'}" TextColor="DarkGray" VerticalOptions="Center"/>
+                                    </Grid>
+                                </ViewCell>
+                            </DataTemplate>
+                        </ListView.ItemTemplate>
+                    </ListView>
+                </Border>
+            </Grid>
+        </VerticalStackLayout>
+    </ScrollView>
 </ContentPage>
