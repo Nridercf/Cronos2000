@@ -32,7 +32,7 @@ create table Pointage
 	IdPointage int identity(1,1),
 	IdUtil int,
 	dateHeureArriver datetime,
-	dateHeureSortie datetime,
+	dateHeureSortie datetime null,
 	Constraint PK_Pointage primary key (IdPointage),
 	Constraint FK_Pointage_IdUtil foreign key (IdUtil)
 	References Utilisateur(IdUtil)
@@ -94,6 +94,37 @@ begin
 end
 go
 
+create proc GetPointagesUtil @IdUtil int
+as
+begin
+	select TOP 5 IdPointage, IdUtil, dateHeureArriver, dateHeureSortie from pointage where @IdUtil = IdUtil ORDER BY dateHeureArriver DESC
+end
+go
+
+create proc GetPointageOuvertUtil @IdUtil int
+as
+begin
+	select IdPointage, IdUtil, dateHeureArriver, dateHeureSortie from pointage where @IdUtil = IdUtil AND dateHeureSortie is null
+end
+go
+
+create proc CreatePointage @IdUtil int,@Arrivee datetime
+as
+begin
+	insert into Pointage (IdUtil, dateHeureArriver, dateHeureSortie)
+	values(@IdUtil, @Arrivee, null)
+end
+go
+
+create proc UpdatePointage @Id int,@Sortie datetime
+as
+begin
+	update Pointage
+	set dateHeureSortie = @Sortie
+	where IdUtil = @Id
+end
+go
+
 insert into RoleUtil(Libelle)
 values('Administation')
 
@@ -109,4 +140,4 @@ exec GetPersonneMatricule @Matricule = 'Admin'
 exec GetPersonnes
 
 
-
+SELECT * FROM Pointage
