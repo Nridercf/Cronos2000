@@ -12,9 +12,9 @@ public partial class AjoutUtilisateur : ContentPage
 	{
 		InitializeComponent();
         _roles = _dataService.GetRoles();
-        PickerRole.ItemsSource = _roles;
-        PickerRole.ItemDisplayBinding = new Binding("Libelle");
-        BindingContext = this;
+        PickerRole.ItemsSource = _roles; // On ajoute les roles dans le picker
+        PickerRole.ItemDisplayBinding = new Binding("Libelle"); // On affiche le libelle des roles
+        BindingContext = this; // On lie le contexte de la page à la page
 
     }
 
@@ -23,9 +23,9 @@ public partial class AjoutUtilisateur : ContentPage
         creePersonne.Nom = EntryNom.Text;
         creePersonne.Prenom = EntryPrenom.Text;
         creePersonne.Matricule = EntryMatricule.Text;
-        creePersonne.Mdp = Hashage.Hash(EntryMDP.Text);
-        creePersonne.RoleUtil = (Role)PickerRole.SelectedItem;
-        _dataService.CreatePersonne(creePersonne);
-        this.Navigation.PopAsync();
+        creePersonne.Mdp = Hashage.Hash(EntryMDP.Text); // On hash le mot de passe
+        creePersonne.RoleUtil = (Role)PickerRole.SelectedItem; // On récupère le role selectionné
+        _dataService.CreatePersonne(creePersonne); // On crée la personne
+        this.Navigation.PopAsync(); // On revient à la page précédente
     }
 }

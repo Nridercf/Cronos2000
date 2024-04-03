@@ -5,26 +5,13 @@ using System.Runtime.InteropServices;
 
 namespace DFRCronos2000.Factories;
 
-public interface IDataService
-{
-    List<Utilisateur> GetPersonnes();
-    Utilisateur GetPersonne(int id);
-
-    Utilisateur GetPersonne(string matricule);
-    bool CreatePersonne(Utilisateur personne);
-    bool UpdatePersonne(Utilisateur personne);
-    bool DeletePersonne(int id);
-
-    List<Pointage> GetPointagesUtil(int id);
-    List<Role> GetRoles();
-}
 
 public class DataService
 {
     private readonly SqlConnection _connexion;
     public DataService()
     {
-        SqlConnectionStringBuilder builder = new()
+        SqlConnectionStringBuilder builder = new() // initalise la connexion à la base de données
         {
             DataSource = "localhost",
             UserID = "sa",
@@ -35,19 +22,19 @@ public class DataService
     }
 
 
-    public List<Utilisateur> GetPersonnes()
+    public List<Utilisateur> GetPersonnes() // recupère la liste de tout les utilisateur
     {
-        String procedure = "GetPersonnes";
+        String procedure = "GetPersonnes"; // nom de la procédure stockée
         List<Utilisateur> values;
 
 
         _connexion.Open();
-        using (SqlCommand command = new SqlCommand(procedure, _connexion)) // create a new command object with the stored procedure
+        using (SqlCommand command = new SqlCommand(procedure, _connexion)) 
         {
-            command.CommandType = CommandType.StoredProcedure; // set the command type to stored procedure
-            using (SqlDataReader reader = command.ExecuteReader()) // execute the stored procedure
+            command.CommandType = CommandType.StoredProcedure; // on indique que c'est une procédure stockée
+            using (SqlDataReader reader = command.ExecuteReader()) // on execute la commande
             {
-                values = reader.Cast<IDataRecord>().Select(r => new Utilisateur // convert the result to a list of Utilisateur objects
+                values = reader.Cast<IDataRecord>().Select(r => new Utilisateur  // on recupère les valeurs de la base de données
 
                 {
                     IdUtil = r["IdUtil"] as int?,
@@ -66,19 +53,19 @@ public class DataService
         return values;
     }
 
-    public List<Role> GetRoles()
+    public List<Role> GetRoles() // recupère la liste de tout les roles
     {
-        String procedure = "GetRoles";
+        String procedure = "GetRoles"; // nom de la procédure stockée
         List<Role> values;
 
 
         _connexion.Open();
-        using (SqlCommand command = new SqlCommand(procedure, _connexion)) // create a new command object with the stored procedure
+        using (SqlCommand command = new SqlCommand(procedure, _connexion)) 
         {
-            command.CommandType = CommandType.StoredProcedure; // set the command type to stored procedure
-            using (SqlDataReader reader = command.ExecuteReader()) // execute the stored procedure
+            command.CommandType = CommandType.StoredProcedure;  // on indique que c'est une procédure stockée
+            using (SqlDataReader reader = command.ExecuteReader())  // on execute la commande
             {
-                values = reader.Cast<IDataRecord>().Select(r => new Role // convert the result to a list of Utilisateur objects
+                values = reader.Cast<IDataRecord>().Select(r => new Role // on recupère les valeurs de la base de données
 
                 {
                     IdRole = r["IdRole"] as int?,
@@ -90,19 +77,19 @@ public class DataService
         return values;
     }
 
-    public Utilisateur GetPersonne(int id)
+    public Utilisateur GetPersonne(int id) // recupère un utilisateur en fonction de son id
     {
-        String procedure = "GetPersonne";
+        String procedure = "GetPersonne"; // nom de la procédure stockée
         Utilisateur value = null;
         _connexion.Open();
         using (SqlCommand command = new SqlCommand(procedure, _connexion))
         {
-            command.CommandType = CommandType.StoredProcedure;
-            command.Parameters.AddWithValue("@IdUtil", id);
-            using (SqlDataReader reader = command.ExecuteReader())
+            command.CommandType = CommandType.StoredProcedure; // on indique que c'est une procédure stockée
+            command.Parameters.AddWithValue("@IdUtil", id); // on ajoute le paramètre ID
+            using (SqlDataReader reader = command.ExecuteReader()) // on execute la commande
             {
 
-                value = reader.Cast<IDataRecord>().Select(r => new Utilisateur
+                value = reader.Cast<IDataRecord>().Select(r => new Utilisateur // on recupère les valeurs de la base de données
                 {
                     IdUtil = r["IdUtil"] as int?,
                     Nom = r["Nom"] as string,
@@ -120,19 +107,19 @@ public class DataService
         return value;
     }
 
-    public Utilisateur GetPersonne(string matricule)
+    public Utilisateur GetPersonne(string matricule) // recupère un utilisateur en fonction de son matricule
     {
-        String procedure = "GetPersonneMatricule";
+        String procedure = "GetPersonneMatricule"; // nom de la procédure stockée
         Utilisateur value = null;
 
         _connexion.Open();
-        using (SqlCommand command = new SqlCommand(procedure, _connexion))
+        using (SqlCommand command = new SqlCommand(procedure, _connexion)) // on execute la commande
         {
-            command.CommandType = CommandType.StoredProcedure;
-            command.Parameters.AddWithValue("@Matricule", matricule);
-            using (SqlDataReader reader = command.ExecuteReader()) // execute the stored procedure
+            command.CommandType = CommandType.StoredProcedure; // on indique que c'est une procédure stockée
+            command.Parameters.AddWithValue("@Matricule", matricule); // on ajoute le paramètre Matricule
+            using (SqlDataReader reader = command.ExecuteReader())  // on execute la commande
             {
-                value = reader.Cast<IDataRecord>().Select(r => new Utilisateur // convert the result to a Utilisateur object
+                value = reader.Cast<IDataRecord>().Select(r => new Utilisateur  // on recupère les valeurs de la base de données
                 {
                     IdUtil = r["IdUtil"] as int?,
                     Nom = r["Nom"] as string,
@@ -150,23 +137,20 @@ public class DataService
         return value;
     }
 
-
-
-
-    public bool CreatePersonne(Utilisateur personne)
+    public bool CreatePersonne(Utilisateur personne) // crée un utilisateur
     {
-        String procedure = "CreatePersonne";
+        String procedure = "CreatePersonne"; // nom de la procédure stockée
         bool value = false;
 
         _connexion.Open();
-        using (SqlCommand command = new SqlCommand(procedure, _connexion))
+        using (SqlCommand command = new SqlCommand(procedure, _connexion)) // on execute la commande
         {
-            command.CommandType = CommandType.StoredProcedure;
-            command.Parameters.AddWithValue("@Nom", personne.Nom);
-            command.Parameters.AddWithValue("@Prenom", personne.Prenom);
-            command.Parameters.AddWithValue("@Matricule", personne.Matricule);
-            command.Parameters.AddWithValue("@MDP", personne.Mdp);
-            command.Parameters.AddWithValue("@IdRole", personne.RoleUtil.IdRole);
+            command.CommandType = CommandType.StoredProcedure; // on indique que c'est une procédure stockée
+            command.Parameters.AddWithValue("@Nom", personne.Nom); // on ajoute le paramètre Nom
+            command.Parameters.AddWithValue("@Prenom", personne.Prenom); // on ajoute le paramètre Prenom
+            command.Parameters.AddWithValue("@Matricule", personne.Matricule); // on ajoute le paramètre Matricule
+            command.Parameters.AddWithValue("@MDP", personne.Mdp); // on ajoute le paramètre MDP
+            command.Parameters.AddWithValue("@IdRole", personne.RoleUtil.IdRole); // on ajoute le paramètre IdRole
 
             value = command.ExecuteNonQuery() > 0;
         }
@@ -176,20 +160,20 @@ public class DataService
 
 
 
-    public bool UpdatePersonne(Utilisateur personne)
+    public bool UpdatePersonne(Utilisateur personne) // met à jour un utilisateur
     {
-        String procedure = "UpdatePersonne";
+        String procedure = "UpdatePersonne"; // nom de la procédure stockée
         bool value = false;
 
         _connexion.Open();
-        using (SqlCommand command = new SqlCommand(procedure, _connexion))
+        using (SqlCommand command = new SqlCommand(procedure, _connexion)) // on execute la commande
         {
-            command.CommandType = CommandType.StoredProcedure;
-            command.Parameters.AddWithValue("@Id", personne.IdUtil);
-            command.Parameters.AddWithValue("@Nom", personne.Nom);
-            command.Parameters.AddWithValue("@Prenom", personne.Prenom);
-            command.Parameters.AddWithValue("@Matricule", personne.Matricule);
-            command.Parameters.AddWithValue("@IdRole", personne.RoleUtil.IdRole);
+            command.CommandType = CommandType.StoredProcedure; // on indique que c'est une procédure stockée
+            command.Parameters.AddWithValue("@Id", personne.IdUtil); // on ajoute le paramètre ID
+            command.Parameters.AddWithValue("@Nom", personne.Nom); // on ajoute le paramètre Nom
+            command.Parameters.AddWithValue("@Prenom", personne.Prenom); // on ajoute le paramètre Prenom
+            command.Parameters.AddWithValue("@Matricule", personne.Matricule); // on ajoute le paramètre Matricule
+            command.Parameters.AddWithValue("@IdRole", personne.RoleUtil.IdRole); // on ajoute le paramètre IdRole
 
             value = command.ExecuteNonQuery() > 0;
         }
@@ -197,17 +181,17 @@ public class DataService
         return value;
     }
 
-    public bool UpdatePersonneMDP(Utilisateur personne)
+    public bool UpdatePersonneMDP(Utilisateur personne) // met à jour le mot de passe d'un utilisateur
     {
-        String procedure = "UpdatePersonneMDP";
+        String procedure = "UpdatePersonneMDP"; // nom de la procédure stockée
         bool value = false;
 
         _connexion.Open();
-        using (SqlCommand command = new SqlCommand(procedure, _connexion))
+        using (SqlCommand command = new SqlCommand(procedure, _connexion)) // on execute la commande
         {
-            command.CommandType = CommandType.StoredProcedure;
-            command.Parameters.AddWithValue("@Id", personne.IdUtil);
-            command.Parameters.AddWithValue("@MDP", personne.Mdp);
+            command.CommandType = CommandType.StoredProcedure; // on indique que c'est une procédure stockée
+            command.Parameters.AddWithValue("@Id", personne.IdUtil); // on ajoute le paramètre ID
+            command.Parameters.AddWithValue("@MDP", personne.Mdp); // on ajoute le paramètre MDP
 
             value = command.ExecuteNonQuery() > 0;
         }
@@ -215,35 +199,35 @@ public class DataService
         return value;
     }
 
-    public bool DeletePersonne(int id)
+    public bool DeletePersonne(int id) // supprime un utilisateur
     {
-        String procedure = "DeletePersonne";
+        String procedure = "DeletePersonne"; // nom de la procédure stockée
         bool value = false;
 
         _connexion.Open();
-        using (SqlCommand command = new SqlCommand(procedure, _connexion))
+        using (SqlCommand command = new SqlCommand(procedure, _connexion)) // on execute la commande    
         {
-            command.CommandType = CommandType.StoredProcedure;
-            command.Parameters.AddWithValue("@Id", id);
+            command.CommandType = CommandType.StoredProcedure; // on indique que c'est une procédure stockée
+            command.Parameters.AddWithValue("@Id", id); // on ajoute le paramètre ID
             value = command.ExecuteNonQuery() > 0;
         }
         _connexion.Close();
         return value;
     }
     // Partie Pointages
-    public List<PointageData> GetPointagesUtil(int id)
+    public List<PointageData> GetPointagesUtil(int id) // recupère la liste de tout les pointages d'un utilisateur
     {
-        String procedure = "GetPointagesUtil";
+        String procedure = "GetPointagesUtil"; // nom de la procédure stockée
         List<PointageData> values;
 
         _connexion.Open();
-        using (SqlCommand command = new SqlCommand(procedure, _connexion)) // create a new command object with the stored procedure
+        using (SqlCommand command = new SqlCommand(procedure, _connexion))  
         {
-            command.CommandType = CommandType.StoredProcedure; // set the command type to stored procedure
-            command.Parameters.AddWithValue("@IdUtil", id);
-            using (SqlDataReader reader = command.ExecuteReader()) // execute the stored procedure
+            command.CommandType = CommandType.StoredProcedure; // on indique que c'est une procédure stockée
+            command.Parameters.AddWithValue("@IdUtil", id); // on ajoute le paramètre ID
+            using (SqlDataReader reader = command.ExecuteReader()) // on execute la commande
             {
-                values = reader.Cast<IDataRecord>().Select(r => new PointageData // convert the result to a list of Pointage objects
+                values = reader.Cast<IDataRecord>().Select(r => new PointageData // on recupère les valeurs de la base de données
                 {
                     IdPointage = r["IdPointage"] as int?,
                     IdUtil = r["IdUtil"] as int?,
@@ -256,19 +240,19 @@ public class DataService
         return values;
     }
 
-    public PointageData GetPointageOuvertUtil(int id)
+    public PointageData GetPointageOuvertUtil(int id) // recupère le pointage ouvert d'un utilisateur
     {
-        String procedure = "GetPointageOuvertUtil";
+        String procedure = "GetPointageOuvertUtil"; // nom de la procédure stockée
         PointageData value;
 
         _connexion.Open();
-        using (SqlCommand command = new SqlCommand(procedure, _connexion)) // create a new command object with the stored procedure
+        using (SqlCommand command = new SqlCommand(procedure, _connexion))
         {
-            command.CommandType = CommandType.StoredProcedure; // set the command type to stored procedure
-            command.Parameters.AddWithValue("@IdUtil", id);
-            using (SqlDataReader reader = command.ExecuteReader()) // execute the stored procedure
+            command.CommandType = CommandType.StoredProcedure; // on indique que c'est une procédure stockée
+            command.Parameters.AddWithValue("@IdUtil", id); // on ajoute le paramètre ID
+            using (SqlDataReader reader = command.ExecuteReader())
             {
-                value = reader.Cast<IDataRecord>().Select(r => new PointageData // convert the result to a list of Pointage objects
+                value = reader.Cast<IDataRecord>().Select(r => new PointageData 
                 {
                     IdPointage = r["IdPointage"] as int?,
                     IdUtil = r["IdUtil"] as int?,
@@ -281,34 +265,34 @@ public class DataService
         return value;
     }
 
-    public bool UpdatePointage(int id, DateTime date)
+    public bool UpdatePointage(int id, DateTime date) // met à jour un pointage
     {
-        String procedure = "UpdatePointage";
+        String procedure = "UpdatePointage"; // nom de la procédure stockée
         bool value = false;
 
         _connexion.Open();
         using (SqlCommand command = new SqlCommand(procedure, _connexion))
         {
-            command.CommandType = CommandType.StoredProcedure;
-            command.Parameters.AddWithValue("@Id", id);
-            command.Parameters.AddWithValue("@Sortie", date);
+            command.CommandType = CommandType.StoredProcedure; // on indique que c'est une procédure stockée
+            command.Parameters.AddWithValue("@Id", id); // on ajoute le paramètre ID
+            command.Parameters.AddWithValue("@Sortie", date); // on ajoute le paramètre Sortie
             value = command.ExecuteNonQuery() > 0;
         }
         _connexion.Close();
         return value;
     }
 
-    public bool CreatePointage(int id, DateTime dateDebut)
+    public bool CreatePointage(int id, DateTime dateDebut) // crée un pointage
     {
-        String procedure = "CreatePointage";
+        String procedure = "CreatePointage"; // nom de la procédure stockée
         bool value = false;
 
         _connexion.Open();
         using (SqlCommand command = new SqlCommand(procedure, _connexion))
         {
-            command.CommandType = CommandType.StoredProcedure;
-            command.Parameters.AddWithValue("@IdUtil", id);
-            command.Parameters.AddWithValue("@Arrivee", dateDebut);
+            command.CommandType = CommandType.StoredProcedure; // on indique que c'est une procédure stockée
+            command.Parameters.AddWithValue("@IdUtil", id); // on ajoute le paramètre ID
+            command.Parameters.AddWithValue("@Arrivee", dateDebut);     // on ajoute le paramètre Arrivee
             value = command.ExecuteNonQuery() > 0;
         }
         _connexion.Close();

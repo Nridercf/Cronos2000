@@ -11,25 +11,25 @@ public partial class Pointage : ContentPage
     public Pointage(Utilisateur utilisateur)
     {
         InitializeComponent();
-        Pointages = _dataService.GetPointagesUtil((int)utilisateur.IdUtil);
-        BindingContext = this;
-        cetteUtilisateur = utilisateur;
-        PointageData pointage = _dataService.GetPointageOuvertUtil((int)cetteUtilisateur.IdUtil);
-        if (pointage == null) { Pointer.Text = "Badger en entrée";} else { Pointer.Text = "Badger en sortie";}
+        Pointages = _dataService.GetPointagesUtil((int)utilisateur.IdUtil); // Récupère les pointages de l'utilisateur
+        BindingContext = this; // Lie le contexte de la page
+        cetteUtilisateur = utilisateur; // Récupère l'utilisateur
+        PointageData pointage = _dataService.GetPointageOuvertUtil((int)cetteUtilisateur.IdUtil); // Récupère le pointage ouvert de l'utilisateur
+        if (pointage == null) { Pointer.Text = "Badger en entrée";} else { Pointer.Text = "Badger en sortie";} // Affiche le texte en fonction du pointage
     }
 
-    private void OnPointerClicked(object sender, EventArgs e)
+    private void OnPointerClicked(object sender, EventArgs e) // Pointe l'utilisateur
     {
-        PointageData pointage = _dataService.GetPointageOuvertUtil((int)cetteUtilisateur.IdUtil);
-        DateTime dateHeureActuelle = DateTime.Now;
+        PointageData pointage = _dataService.GetPointageOuvertUtil((int)cetteUtilisateur.IdUtil); // Récupère le pointage ouvert de l'utilisateur
+        DateTime dateHeureActuelle = DateTime.Now; // Récupère la date et l'heure actuelle
         if (pointage == null) {
-            bool succes = _dataService.CreatePointage((int)cetteUtilisateur.IdUtil, dateHeureActuelle);
-            Pointages = _dataService.GetPointagesUtil((int)cetteUtilisateur.IdUtil);
-            Pointer.Text = "Badger en sortie";
+            bool succes = _dataService.CreatePointage((int)cetteUtilisateur.IdUtil, dateHeureActuelle); // Crée un pointage
+            Pointages = _dataService.GetPointagesUtil((int)cetteUtilisateur.IdUtil); // Récupère les pointages de l'utilisateur
+            Pointer.Text = "Badger en sortie";// Affiche le texte en fonction du pointage
         } else {
-            bool succes = _dataService.UpdatePointage((int)cetteUtilisateur.IdUtil, dateHeureActuelle);
-            Pointages = _dataService.GetPointagesUtil((int)cetteUtilisateur.IdUtil);
-            Pointer.Text = "Badger en entrée";
+            bool succes = _dataService.UpdatePointage((int)cetteUtilisateur.IdUtil, dateHeureActuelle); // Met à jour le pointage
+            Pointages = _dataService.GetPointagesUtil((int)cetteUtilisateur.IdUtil); // Récupère les pointages de l'utilisateur
+            Pointer.Text = "Badger en entrée"; // Affiche le texte en fonction du pointage
         }
     }
 }
