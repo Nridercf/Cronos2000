@@ -24,8 +24,8 @@
             </Grid.ColumnDefinitions>
             <StackLayout Grid.Row="1" Grid.Column="1" HorizontalOptions="Center"  VerticalOptions="Center">
                 <Label Text="Connexion" FontSize="Large" Grid.Column="0" TextColor="White" HorizontalOptions="Center" VerticalOptions="Center" Margin="10" />
-                <Entry Placeholder="Nom" x:Name="Matricule" MaxLength="15" HorizontalOptions="Center" VerticalOptions="Center" WidthRequest="300"  Margin="10,30,10,10"/>
-                <Entry Placeholder="Mot de Passe" x:Name="MDP" MaxLength="30" HorizontalOptions="Center" VerticalOptions="Center" WidthRequest="300" IsPassword="True" Margin="10"/>
+                <Entry Placeholder="Nom" x:Name="Matricule" MaxLength="15" TextColor="White"   HorizontalOptions="Center" VerticalOptions="Center" WidthRequest="300"  Margin="10,30,10,10"/>
+                <Entry Placeholder="Mot de Passe" x:Name="MDP" MaxLength="30"  TextColor="White"  HorizontalOptions="Center" VerticalOptions="Center" WidthRequest="300" IsPassword="True" Margin="10"/>
                 <Button Text="Connexion" HorizontalOptions="Center"  VerticalOptions="Center" WidthRequest="150" BackgroundColor="Black"    Margin="10,30,10,10" Clicked="Tentative_Connexion"> <Button.Background>
                     <LinearGradientBrush StartPoint="0,5" EndPoint="3,1">
                         <GradientStop Color="BlueViolet"
