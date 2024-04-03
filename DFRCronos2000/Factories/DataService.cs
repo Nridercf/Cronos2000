@@ -197,6 +197,24 @@ public class DataService
         return value;
     }
 
+    public bool UpdatePersonneMDP(Utilisateur personne)
+    {
+        String procedure = "UpdatePersonneMDP";
+        bool value = false;
+
+        _connexion.Open();
+        using (SqlCommand command = new SqlCommand(procedure, _connexion))
+        {
+            command.CommandType = CommandType.StoredProcedure;
+            command.Parameters.AddWithValue("@Id", personne.IdUtil);
+            command.Parameters.AddWithValue("@MDP", personne.Mdp);
+
+            value = command.ExecuteNonQuery() > 0;
+        }
+        _connexion.Close();
+        return value;
+    }
+
     public bool DeletePersonne(int id)
     {
         String procedure = "DeletePersonne";

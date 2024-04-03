@@ -87,6 +87,16 @@ begin
 end
 go
 
+create proc UpdatePersonneMDP @Id int,@MDP varchar(255)
+as
+begin
+	update Utilisateur
+	set MDP = @MDP
+	where IdUtil = @Id
+end
+go
+
+
 create proc DeletePersonne @Id int
 as
 begin

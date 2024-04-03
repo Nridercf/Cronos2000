@@ -43,8 +43,8 @@
                                     <Label Padding="2" Grid.Column="3" Text="{Binding Matricule}" TextColor="white" VerticalOptions="Center"/>
                                     <Label Padding="2" Grid.Column="4" Text="{Binding RoleUtil.Libelle}" TextColor="white" VerticalOptions="Center"/>
                                     <Button Grid.Column="5" Text="Modifier" Clicked="OnEditClicked" CommandParameter="{Binding IdUtil}" WidthRequest="15" HeightRequest="15" BackgroundColor="Transparent" Padding="2"/>
-                                    <Button Grid.Column="6" Text="Reinitailiastion Mot De Passe" CommandParameter="{Binding IdUtil}" WidthRequest="15" HeightRequest="15" BackgroundColor="Transparent" Padding="2"/>
-                                    <Button Grid.Column="7" Text="Supréssion" CommandParameter="{Binding IdUtil}" WidthRequest="15" HeightRequest="15" BackgroundColor="Transparent" Padding="2"/>
+                                    <Button Grid.Column="6" Text="Reinitailiastion Mot De Passe" Clicked="NouvMDPClicked"  CommandParameter="{Binding IdUtil}" WidthRequest="15" HeightRequest="15" BackgroundColor="Transparent" Padding="2"/>
+                                    <Button Grid.Column="7" Text="Supprimer" Clicked="OnDeleteClicked" CommandParameter="{Binding IdUtil}" WidthRequest="15" HeightRequest="15" BackgroundColor="Transparent" Padding="2"/>
                                 </Grid>
                             </ViewCell>
                         </DataTemplate>

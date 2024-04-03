@@ -7,7 +7,7 @@ public class Utilisateur
     public string Prenom { get; set; }
     public string Matricule { get; set; }
     public string Mdp { get; set; }
-
+#nullable enable
     public Role? RoleUtil { get; set; }
 
 }
