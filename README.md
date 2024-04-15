@@ -1,2 +1,2 @@
 # Cronos2000
-pour fliquer les employés
+application de pointage pour compter le temps de travail de salariés
