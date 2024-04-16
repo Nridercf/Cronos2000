@@ -20,6 +20,11 @@ public partial class AjoutUtilisateur : ContentPage
 
     private void ValidationModification(object sender, EventArgs e)
     {
+        if (EntryNom.Text is null || EntryPrenom.Text is null || EntryMatricule.Text is null || EntryMDP.Text is null || PickerRole.SelectedIndex == -1) // On vérifie que les champs sont remplis
+        {
+            DisplayAlert("Erreur", "Veuillez remplir tous les champs", "OK");
+            return;
+        }
         creePersonne.Nom = EntryNom.Text;
         creePersonne.Prenom = EntryPrenom.Text;
         creePersonne.Matricule = EntryMatricule.Text;
